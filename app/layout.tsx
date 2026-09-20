@@ -11,21 +11,21 @@ const _courierPrime = Courier_Prime({ weight: ["400", "700"], subsets: ["latin"]
 const _ibmPlexSans = IBM_Plex_Sans({ weight: ["300", "400", "500", "600"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Agentic — Autonomous AI Agents at Scale',
-  description: 'Deploy autonomous AI agents that think, act, and execute across any workflow. Connect 200+ integrations, run agents in parallel, and ship faster with the Agentic platform.',
-  keywords: ['AI agents', 'autonomous agents', 'LLM orchestration', 'AI automation', 'multi-agent platform'],
-  authors: [{ name: 'Agentic' }],
+  title: '3 Variant Technology — Custom Software for Modern Business',
+  description: 'A small, capable team building custom digital solutions — web, mobile, AI, cloud, and commerce. From idea to development, deployment, and scale.',
+  keywords: ['custom software development', 'web development', 'mobile app development', 'AI and machine learning', 'AI automation', 'cloud development', 'Shopify development', 'WordPress development', 'ERP and CRM solutions'],
+  authors: [{ name: '3 Variant Technology' }],
   openGraph: {
-    title: 'Agentic — Autonomous AI Agents at Scale',
-    description: 'Deploy autonomous AI agents that think, act, and execute across any workflow.',
+    title: '3 Variant Technology — Custom Software for Modern Business',
+    description: 'Small team. Serious technology. Big possibilities. We take projects from idea to development, deployment, and scaling.',
     type: 'website',
-    url: 'https://agentic.ai',
-    siteName: 'Agentic',
+    url: 'https://3variant.tech',
+    siteName: '3 Variant Technology',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agentic — Autonomous AI Agents at Scale',
-    description: 'Deploy autonomous AI agents that think, act, and execute across any workflow.',
+    title: '3 Variant Technology — Custom Software for Modern Business',
+    description: 'Small team. Serious technology. Big possibilities. We take projects from idea to development, deployment, and scaling.',
   },
   icons: {
     icon: [

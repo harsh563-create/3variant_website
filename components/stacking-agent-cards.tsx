@@ -4,32 +4,28 @@ import { useEffect, useRef, useState } from "react"
 
 const AGENTS = [
   {
-    label: "RESEARCHER",
-    title: "Web & data research",
-    desc: "Autonomously browses the web, extracts structured data, synthesizes reports from multiple sources with citations.",
-    stats: [{ v: "2.4M", l: "tasks run" }, { v: "98.2%", l: "accuracy" }],
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/researcher-CvhqOuV6irGwBOnJoTGFlXdbyYBRjb.png",
+    label: "WEB",
+    title: "Web development",
+    desc: "Fast, responsive websites and web apps — built for performance, search, and conversion.",
+    stats: [{ v: "120+", l: "sites shipped" }, { v: "60+", l: "web apps" }],
   },
   {
-    label: "CODER",
-    title: "Code generation & review",
-    desc: "Writes, refactors, and reviews code across 40+ languages. Runs tests, fixes bugs, opens pull requests automatically.",
-    stats: [{ v: "1.1M", l: "PRs merged" }, { v: "3.2s", l: "avg response" }],
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/coder-9bItvCegU6TXUqbX3tUXGBAtvkBkXp.png",
+    label: "MOBILE",
+    title: "Mobile app development",
+    desc: "iOS and Android apps in React Native that feel native, ship fast, and scale with you.",
+    stats: [{ v: "40+", l: "apps delivered" }, { v: "4.8★", l: "app store rating" }],
   },
   {
-    label: "ANALYST",
-    title: "Data analysis & insights",
-    desc: "Connects to your databases, runs queries, visualizes trends, and surfaces anomalies before they become problems.",
-    stats: [{ v: "880K", l: "reports" }, { v: "12x", l: "faster" }],
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/analyst-Ysxnqg7Fpy2cfA56PiIttv1KximMhT.png",
+    label: "AI & ML",
+    title: "AI, ML & automation",
+    desc: "Custom models, intelligent automation, and data pipelines that turn your data into decisions.",
+    stats: [{ v: "30+", l: "AI projects" }, { v: "3x", l: "avg efficiency" }],
   },
   {
-    label: "EXECUTOR",
-    title: "Workflow automation",
-    desc: "Takes actions across APIs: sends messages, creates calendar events, triggers webhooks, and manages third-party apps.",
-    stats: [{ v: "5.6M", l: "executions" }, { v: "99.9%", l: "uptime" }],
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/executor-o1q6509qMLXMtpBIGo49vcgOu34sI1.png",
+    label: "CLOUD",
+    title: "Cloud & integrations",
+    desc: "Scalable cloud architecture, ERP/CRM, Shopify, and WordPress builds that grow with your business.",
+    stats: [{ v: "50+", l: "systems built" }, { v: "99.9%", l: "uptime" }],
   },
 ]
 
@@ -98,45 +94,9 @@ export function StackingAgentCards() {
             >
               <div className="group relative bg-[#faf9f7] rounded-2xl border border-black/[0.07] overflow-hidden cursor-pointer">
 
-                {/* ── MOBILE: image top, fades out at bottom ── */}
-                {agent.img && (
-                  <div className="relative w-full h-52 pointer-events-none md:hidden">
-                    <img
-                      src={agent.img}
-                      alt={agent.label}
-                      className="absolute inset-0 w-full h-full object-cover object-center"
-                      style={{
-                        maskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
-                        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
-                      }}
-                    />
-                  </div>
-                )}
-
-                {/* ── DESKTOP: image right, fades out at left (absolute) ── */}
-                {agent.img && (
-                  <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 pointer-events-none">
-                    <img
-                      src={agent.img}
-                      alt={agent.label}
-                      className="w-full h-full object-cover object-center"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: "linear-gradient(to right, #faf9f7 0%, transparent 55%)",
-                      }}
-                    />
-                  </div>
-                )}
-
                 {/* Text content */}
-                <div
-                  className="relative z-10 p-8"
-                  style={{ maxWidth: agent.img ? undefined : "100%" }}
-                  // On desktop limit to left 60% so text doesn't overlap image
-                >
-                  <div className="md:max-w-[60%]">
+                <div className="relative z-10 p-8">
+                  <div>
                     <div className="flex items-start justify-between mb-6">
                       <Tag>{agent.label}</Tag>
                     </div>

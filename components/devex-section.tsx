@@ -5,82 +5,88 @@ import { useState, useEffect } from "react"
 const STEPS = [
   {
     num: "01",
-    title: "Install SDK",
-    desc: "One command to get started",
-    file: "terminal",
+    title: "Discover",
+    desc: "We learn your business and goals",
+    file: "kickoff",
     lang: "bash",
     code: [
-      { type: "comment", text: "# Install the Agentic SDK" },
-      { type: "command", text: "npm install @agentic/sdk" },
+      { type: "comment", text: "# 1 · Discovery" },
+      { type: "output", text: "  Understanding your business" },
+      { type: "output", text: "  Mapping users & scope" },
+      { type: "output", text: "  Defining success metrics" },
       { type: "gap" },
-      { type: "comment", text: "# Initialize your project" },
-      { type: "command", text: "npx agentic init" },
-      { type: "gap" },
-      { type: "output", text: "✓ Project initialized" },
-      { type: "output", text: "✓ Config file created" },
-      { type: "output", text: "✓ Ready to build" },
+      { type: "success", text: "✓ Project brief agreed" },
     ],
   },
   {
     num: "02",
-    title: "Define Agent",
-    desc: "TypeScript-first agent class",
-    file: "agents/researcher.ts",
-    lang: "typescript",
+    title: "Design",
+    desc: "Architecture and UX agreed upfront",
+    file: "architecture",
+    lang: "bash",
     code: [
-      { type: "comment", text: "// agents/researcher.ts" },
-      { type: "keyword", text: "import", after: " { Agent, Tool } ", keyword2: "from", string: " '@agentic/sdk'" },
+      { type: "comment", text: "// project/architecture" },
+      { type: "output", text: "  Web:    React + Node.js" },
+      { type: "output", text: "  Mobile: React Native" },
+      { type: "output", text: "  Data:   PostgreSQL" },
+      { type: "output", text: "  Cloud:  AWS / Vercel" },
       { type: "gap" },
-      { type: "keyword", text: "const", after: " webSearch ", keyword2: "=", keyword3: " new ", fn: "Tool", args: "('web-search', async (q) => { ... })" },
-      { type: "gap" },
-      { type: "keyword", text: "export const", after: " researcher ", keyword2: "=", keyword3: " new ", fn: "Agent", args: "({" },
-      { type: "prop", key: "  name", val: "'researcher'" },
-      { type: "prop", key: "  model", val: "'claude-opus'" },
-      { type: "prop", key: "  tools", val: "[webSearch]" },
-      { type: "prop", key: "  memory", val: "true" },
-      { type: "plain", text: "});" },
+      { type: "comment", text: "// milestones" },
+      { type: "output", text: "  M1 — MVP in 4 weeks" },
+      { type: "output", text: "  M2 — Beta in 8 weeks" },
     ],
   },
   {
     num: "03",
-    title: "Add Memory",
-    desc: "Persistent conversation context",
-    file: "agents/memory.ts",
-    lang: "typescript",
+    title: "Build",
+    desc: "Visible sprints, regular demos",
+    file: "sprint-12",
+    lang: "bash",
     code: [
-      { type: "comment", text: "// Add long-term memory to any agent" },
-      { type: "keyword", text: "import", after: " { VectorMemory } ", keyword2: "from", string: " '@agentic/memory'" },
+      { type: "comment", text: "# Feature: checkout flow" },
+      { type: "command", text: "git checkout -b feature/checkout" },
+      { type: "command", text: "npm test -- --watch" },
       { type: "gap" },
-      { type: "keyword", text: "const", after: " memory ", keyword2: "=", keyword3: " new ", fn: "VectorMemory", args: "({" },
-      { type: "prop", key: "  provider", val: "'pgvector'" },
-      { type: "prop", key: "  namespace", val: "'researcher'" },
-      { type: "plain", text: "})" },
+      { type: "output", text: "  ✓ 24 tests passing" },
+      { type: "output", text: "  → coverage 91%" },
       { type: "gap" },
-      { type: "comment", text: "// Attach to agent" },
-      { type: "plain", text: "researcher.use(memory)" },
+      { type: "success", text: "✓ PR #96 merged" },
     ],
   },
   {
     num: "04",
-    title: "Deploy",
-    desc: "One command to production",
+    title: "Deploy & Scale",
+    desc: "Launch, monitor, and grow",
     file: "terminal",
     lang: "bash",
     code: [
-      { type: "comment", text: "# Deploy to Agentic Cloud" },
-      { type: "command", text: "agentic deploy --prod" },
+      { type: "comment", text: "# Deploy to production" },
+      { type: "command", text: "npm run build" },
+      { type: "command", text: "npm run deploy -- --prod" },
       { type: "gap" },
-      { type: "output", text: "  Building agent..." },
-      { type: "output", text: "  Running tests..." },
-      { type: "output", text: "  Deploying to edge..." },
+      { type: "output", text: "  Running checks..." },
+      { type: "output", text: "  Deploying to production..." },
       { type: "gap" },
-      { type: "success", text: "✓ researcher deployed" },
-      { type: "url", text: "  → https://agents.agentic.dev/researcher" },
+      { type: "success", text: "✓ v1.0 live" },
+      { type: "url", text: "  → https://yourproject.com" },
     ],
   },
 ]
 
-function CodeLine({ line }: { line: (typeof STEPS)[0]["code"][0] }) {
+type CodeLineShape = {
+  type: string
+  text?: string
+  after?: string
+  keyword2?: string
+  keyword3?: string
+  fn?: string
+  args?: string
+  string?: string
+  key?: string
+  val?: string
+}
+
+function CodeLine({ line }: { line: CodeLineShape }) {
   if (line.type === "gap") return <div className="h-3" />
   if (line.type === "comment") return <div className="text-[#9ca3af]">{line.text}</div>
   if (line.type === "output") return <div className="text-[#6b7280]">{line.text}</div>
@@ -147,10 +153,10 @@ export function DevExSection() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
           <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/[0.05] border border-black/[0.06] text-[10px] tracking-widest text-black/40 uppercase">
-            Developer Experience
+            How We Work
           </div>
           <h2 className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
-            Built for developers.<br />Loved by teams.
+            Clear process.<br />Visible progress.
           </h2>
         </div>
 

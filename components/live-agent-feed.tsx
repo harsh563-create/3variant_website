@@ -2,36 +2,36 @@
 
 import { useEffect, useState, useRef } from "react"
 
-const AGENT_NAMES = [
-  "analyst-7f2a", "executor-3b1c", "monitor-9d4e", "researcher-2c8f",
-  "planner-5a3d", "writer-1e9b", "auditor-4f2c", "coder-8d1a",
-  "reviewer-6b3e", "scheduler-0c7f",
+const PROJECT_NAMES = [
+  "web-store", "crm-portal", "mobile-app", "api-service",
+  "vendor-panel", "shopify-site", "wordpress-blog", "erp-core",
+  "cloud-migrate", "ai-ml-pipeline",
 ]
 
 const TASKS = [
-  "Reviewing 14 open PRs on main branch",
-  "Summarizing weekly Slack threads",
-  "Generating Q2 financial report",
-  "Running integration test suite",
-  "Scraping competitor pricing data",
-  "Drafting 23 cold emails from CRM",
-  "Parsing inbound invoices → DB",
-  "Monitoring uptime across 8 regions",
-  "Refactoring auth module — 3 files",
-  "Analyzing user churn signals",
-  "Syncing Notion docs with Linear",
-  "Tagging 1,200 support tickets",
-  "Deploying to staging environment",
-  "Processing webhook payloads",
+  "Deploying staging build",
+  "Running integration tests",
+  "Reviewing PR #148",
+  "Migrating database schema",
+  "Shipping checkout v2",
+  "Monitoring production uptime",
+  "Building mobile release",
+  "Syncing ERP inventory",
+  "Automating invoice flow",
+  "Configuring cloud scaling",
+  "Drafting sprint report",
+  "Running QA regression suite",
+  "Pushing to production",
+  "Refining AI model accuracy",
 ]
 
 const REGIONS = ["us-east", "eu-west", "ap-south", "us-west", "eu-central"]
 const STATUSES = [
-  { label: "running",  color: "#4ade80" },
-  { label: "running",  color: "#4ade80" },
-  { label: "running",  color: "#4ade80" },
+  { label: "building", color: "#4ade80" },
+  { label: "building", color: "#4ade80" },
+  { label: "building", color: "#4ade80" },
   { label: "queued",   color: "#facc15" },
-  { label: "complete", color: "#60a5fa" },
+  { label: "shipped",  color: "#60a5fa" },
 ]
 
 type AgentRow = {
@@ -48,7 +48,7 @@ type AgentRow = {
 function randomRow(key: number): AgentRow {
   return {
     id: Math.random().toString(36).slice(2, 8).toUpperCase(),
-    name: AGENT_NAMES[Math.floor(Math.random() * AGENT_NAMES.length)],
+    name: PROJECT_NAMES[Math.floor(Math.random() * PROJECT_NAMES.length)],
     task: TASKS[Math.floor(Math.random() * TASKS.length)],
     region: REGIONS[Math.floor(Math.random() * REGIONS.length)],
     status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
@@ -88,12 +88,12 @@ function ProgressBar({ initial }: { initial: number }) {
 
 // Stable seed rows — same on server and client, no random values
 const SEED_ROWS: AgentRow[] = [
-  { id: "A1B2C3", name: "analyst-7f2a",    task: "Generating Q2 financial report",       region: "us-east",    status: STATUSES[0], progress: 42, elapsed: "3m 12s", key: 0 },
-  { id: "D4E5F6", name: "executor-3b1c",   task: "Running integration test suite",       region: "eu-west",    status: STATUSES[0], progress: 67, elapsed: "7m 48s", key: 1 },
-  { id: "G7H8I9", name: "researcher-2c8f", task: "Scraping competitor pricing data",     region: "us-west",    status: STATUSES[3], progress: 18, elapsed: "1m 05s", key: 2 },
-  { id: "J0K1L2", name: "planner-5a3d",    task: "Syncing Notion docs with Linear",      region: "eu-central", status: STATUSES[0], progress: 55, elapsed: "5m 30s", key: 3 },
-  { id: "M3N4O5", name: "coder-8d1a",      task: "Refactoring auth module — 3 files",    region: "ap-south",   status: STATUSES[0], progress: 80, elapsed: "11m 22s", key: 4 },
-  { id: "P6Q7R8", name: "monitor-9d4e",    task: "Monitoring uptime across 8 regions",   region: "us-east",    status: STATUSES[4], progress: 99, elapsed: "14m 01s", key: 5 },
+  { id: "A1B2C3", name: "web-store",       task: "Deploying staging build",          region: "us-east",    status: STATUSES[0], progress: 42, elapsed: "3m 12s", key: 0 },
+  { id: "D4E5F6", name: "crm-portal",      task: "Running integration tests",        region: "eu-west",    status: STATUSES[0], progress: 67, elapsed: "7m 48s", key: 1 },
+  { id: "G7H8I9", name: "mobile-app",      task: "Building mobile release",          region: "us-west",    status: STATUSES[3], progress: 18, elapsed: "1m 05s", key: 2 },
+  { id: "J0K1L2", name: "api-service",     task: "Configuring cloud scaling",        region: "eu-central", status: STATUSES[0], progress: 55, elapsed: "5m 30s", key: 3 },
+  { id: "M3N4O5", name: "shopify-site",    task: "Shipping checkout v2",             region: "ap-south",   status: STATUSES[0], progress: 80, elapsed: "11m 22s", key: 4 },
+  { id: "P6Q7R8", name: "ai-ml-pipeline",  task: "Refining AI model accuracy",       region: "us-east",    status: STATUSES[4], progress: 99, elapsed: "14m 01s", key: 5 },
 ]
 
 export function LiveAgentFeed() {
@@ -128,7 +128,7 @@ export function LiveAgentFeed() {
         borderBottom: "1px solid rgba(0,0,0,0.06)",
         background: "rgba(0,0,0,0.03)",
       }}>
-        {["AGENT", "TASK", "REGION", "STATUS"].map(h => (
+        {["PROJECT", "TASK", "REGION", "STATUS"].map(h => (
           <span key={h} style={{ fontSize: 8, letterSpacing: "0.16em", color: "rgba(0,0,0,0.30)", fontFamily: "monospace" }}>{h}</span>
         ))}
       </div>
@@ -148,7 +148,7 @@ export function LiveAgentFeed() {
               animation: i === rows.length - 1 ? "rowSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) both" : "none",
             }}
           >
-            {/* Agent */}
+            {/* Project */}
             <div>
               <div style={{ fontSize: 9, fontFamily: "monospace", color: "rgba(0,0,0,0.65)", marginBottom: 1 }}>{row.name}</div>
               <div style={{ fontSize: 7.5, fontFamily: "monospace", color: "rgba(0,0,0,0.25)" }}>#{row.id}</div>

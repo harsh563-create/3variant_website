@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const LETTERS = ["A", "G", "E", "N", "T", "I", "C"]
+const LETTERS = ["3", "\u00A0", "V", "A", "R", "I", "A", "N", "T"]
 
 const LETTER_IN_STAGGER  = 90    // ms between each letter appearing
 const LETTER_IN_DUR      = 700   // duration of each letter appear transition
@@ -54,7 +54,7 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      {/* AGENTIC letters */}
+      {/* "3 VARIANT" letters */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex" style={{ gap: "0.06em" }}>
           {LETTERS.map((letter, i) => {
